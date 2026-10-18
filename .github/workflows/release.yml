@@ -1,0 +1,36 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write   # to create the release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install 32-bit MinGW-w64 cross compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-mingw-w64-i686
+          i686-w64-mingw32-g++ --version | head -1
+
+      - name: Build
+        run: make CXX=i686-w64-mingw32-g++
+
+      - name: Verify the artifact is a 32-bit Windows DLL
+        run: |
+          file RenderDistanceMod.dll
+          file RenderDistanceMod.dll | grep -q 'PE32 executable (DLL).*Intel 80386.*for MS Windows'
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" RenderDistanceMod.dll laa.ps1 patch.bat \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes
