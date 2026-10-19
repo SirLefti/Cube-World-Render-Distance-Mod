@@ -31,7 +31,14 @@ the left, the village on the right, and even the reeds by the river.*
 > while still maintaining enough headroom for other things. Despite testing and
 > safety margins, running out of memory is still possible, which can cause
 > severe stuttering and eventually crash the game. Reducing the render distance
-> in the options will likely help.
+> in the options to 50% or lower will likely help. For a patched `Cube.exe`,
+> 50% render distance still results in a +70% render distance compared to
+> vanilla, because this option is not a view distance, but a budget for an area,
+> so the distance shrinks more slowly than the percentage.
+>
+> This is especially relevant when using translation layers like DXVK or any
+> OS compatibility layers like Wine, because each of them adds their own memory
+> footprint as overhead and reduces the headroom we take advantage of.
 
 This mod is for the **alpha** build of Cube World.
 
@@ -50,6 +57,11 @@ render distance.
 Your `Cube.exe` is now patched, and your original file was copied to
 `Cube.exe.bak`. `laa.ps1` and `patch.bat` are not needed anymore and can be
 deleted.
+
+> **Note** <br>
+> You can also use any other LAA patcher if you prefer to do so. Especially on
+> Linux, where `.bat` and `.ps1` cannot be used out of the box. If you have
+> PowerShell installed, you can use `pwsh laa.ps1 <path-to-Cube.exe>` instead.
 
 ## Installation
 
