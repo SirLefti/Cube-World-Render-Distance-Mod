@@ -5,20 +5,20 @@ reason for it. Cube World is 32-bit, which limits the amount of memory it can
 address, and render distance needs memory to load the world.
 
 The vanilla `Cube.exe` can allocate only up to 2 GB of memory. This is already a
-tight budget, so this mod can only add 15% more render distance without risking
+tight budget, so this mod can only add 10% more render distance without risking
 a crash.
 
 This is where LAA-patching comes into play. With *large-address aware*, 32-bit
 executables can use up to 4 GB of memory instead. Cube World does not set this
 LAA flag, but it seems to be able to handle such addresses without any issues.
 See [Patching](#patching) on how to patch your `Cube.exe`. With this patch, the
-mod can add up to 100% more render distance.
+mod can add up to 90% more render distance.
 
 The render distance controls in the options still work as usual, but the mod
 rescales them. On startup, the mod checks if `Cube.exe` was LAA-patched and
 picks its upper limit accordingly: without the patch, 100% in the options
-corresponds to about 115% of the vanilla render distance, and with the patch,
-to about 200%.
+corresponds to about 110% of the vanilla render distance, and with the patch,
+to about 190%.
 
 ![The same view in vanilla and with the mod](render-distance.png)
 
@@ -32,7 +32,7 @@ the left, the village on the right, and even the reeds by the river.*
 > safety margins, running out of memory is still possible, which can cause
 > severe stuttering and eventually crash the game. Reducing the render distance
 > in the options to 50% or lower will likely help. For a patched `Cube.exe`,
-> 50% render distance still results in a +70% render distance compared to
+> 50% render distance still results in a +60% render distance compared to
 > vanilla, because this option is not a view distance, but a budget for an area,
 > so the distance shrinks more slowly than the percentage.
 >

@@ -41,9 +41,11 @@
 
 // ---- tuning -----------------------------------------------------------------
 
-// max increased window size that feel safe to use
-static const uint32_t WINDOW_SIZE_2GB_ADDRESS_SPACE = 46;
-static const uint32_t WINDOW_SIZE_4GB_ADDRESS_SPACE = 80;
+// max increased window size that feel safe to use, we maximize to a full ring
+// of zones, any higher value requires more zones to be prepared taking
+// additional memory
+static const uint32_t WINDOW_SIZE_2GB_ADDRESS_SPACE = 44;
+static const uint32_t WINDOW_SIZE_4GB_ADDRESS_SPACE = 76;
 
 // ---- game facts -------------------------------------------------------------
 
